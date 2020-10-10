@@ -45,3 +45,4 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] rubocop
 - [ ] swagger
 - [ ] logger
+- [ ] replica DB
