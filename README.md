@@ -47,3 +47,4 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] puma
 - [ ] test
 - [ ] rubocop
+- [ ] swagger
