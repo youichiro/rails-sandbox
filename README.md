@@ -39,11 +39,28 @@ $ rails new -d mysql --api -M -C rails-sandbox
 ## やりたいこと
 - [x] docker-composeで開発環境構築
 - [x] cors
+- [x] rubocop
 - [ ] ユーザ承認API
 - [ ] puma
 - [ ] test
-- [ ] rubocop
 - [ ] swagger
 - [ ] logger
 - [ ] replica DB
 - [ ] sidekiq
+
+
+## rubocopの導入
+- Gemfileに以下を追加して`bundle install`
+
+```Gemfile
+group :development do
+  # rubocop
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+end
+```
+
+- `.rubocop.yml`を作成してルールを記述
+- `bundle exec rubocop`を実行してチェック
+- [公式ドキュメント](https://docs.rubocop.org/rubocop/0.93/index.html)で設定について確認できる
