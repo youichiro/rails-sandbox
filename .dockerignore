@@ -1,0 +1,13 @@
+.bundle
+.dockerignore
+.git
+.gitignore
+.ruby-version
+.vscode
+Makefile
+README.md
+Dockerfile
+log/*
+public/*
+tmp/*
+vendor/bundle
