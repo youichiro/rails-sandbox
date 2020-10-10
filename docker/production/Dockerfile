@@ -33,6 +33,10 @@ RUN apt update && apt install -y \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+# appユーザに変更
+RUN useradd -m app
+RUN mkdir /rails && chown app:app /rails
+USER app
 WORKDIR /rails
 
 # 必要なディレクトリを作成
@@ -41,7 +45,7 @@ RUN mkdir -p /rails/tmp/sockets
 
 # builderでbundle installしたファイルをコピーする
 RUN gem install bundler
-COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --chown=app:app --from=builder /usr/local/bundle /usr/local/bundle
 
 # entrypoint.shをコピー
 COPY ./docker/entrypoint.sh /rails/docker/entrypoint.sh
