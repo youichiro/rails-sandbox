@@ -12,8 +12,8 @@ RUN apt update && apt install -y \
   --no-install-recommends
 
 # bundle install
-COPY Gemfile Gemfile.lock ./
 RUN gem install bundler
+COPY Gemfile Gemfile.lock ./
 RUN bundle install -j $(getconf _NPROCESSORS_ONLN)
 
 # multi-stage build
@@ -38,8 +38,9 @@ WORKDIR /rails
 RUN mkdir -p /rails/tmp/pids
 RUN mkdir -p /rails/tmp/sockets
 
-# bundle installしたファイルをbuilderからコピーする
-COPY --from=builder /usr/local/bundle /usr/local/bundle
+# builderでbundle installしたファイルをコピーする
+RUN gem install bundler
+COPY --chown=app:app --from=builder /usr/local/bundle /usr/local/bundle
 
 # entrypoint.shをコピー
 COPY ./docker/entrypoint.sh /rails/docker/entrypoint.sh
