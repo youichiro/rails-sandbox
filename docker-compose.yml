@@ -12,7 +12,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/Dockerfile-dev
     container_name: rails_sandbox_api
     volumes:
       - bundle-install:/usr/local/bundle
