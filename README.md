@@ -46,3 +46,4 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] swagger
 - [ ] logger
 - [ ] replica DB
+- [ ] sidekiq
