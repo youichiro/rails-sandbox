@@ -4,6 +4,9 @@ init:
 	docker-compose run --rm api bin/rails db:seed
 	docker-compose stop
 
+bundle-install:
+	docker-compose run --rm api bundle install
+
 up-dev:
 	docker-compose up --build -d
 	docker-compose logs -f

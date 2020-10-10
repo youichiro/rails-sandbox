@@ -15,7 +15,7 @@ services:
       dockerfile: docker/Dockerfile
     container_name: rails_sandbox_api
     volumes:
-      - bundle-install:/rails/vendor/bundle
+      - bundle-install:/usr/local/bundle
       - ./Gemfile:/rails/Gemfile
       - ./Gemfile.lock:/rails/Gemfile.lock
       - ./Rakefile:/rails/Rakefile

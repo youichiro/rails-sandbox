@@ -14,6 +14,12 @@ $ make init    # 初回時のみ実行する
 $ make up-dev  # 開発環境を立ち上げる
 ```
 
+## gemを追加するとき
+
+```sh
+$ make bundle-install
+```
+
 ## rails newまでにやったこと
 
 ```sh
