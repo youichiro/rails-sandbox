@@ -37,4 +37,6 @@ services:
     stdin_open: true
 volumes:
   mysql-db-data:
+    driver: local
   bundle-install:
+    driver: local
