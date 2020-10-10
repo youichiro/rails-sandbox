@@ -28,11 +28,13 @@ RUN apt update && apt install -y \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+# appユーザに変更
 RUN useradd -m app
 RUN mkdir /rails && chown app:app /rails
 USER app
 WORKDIR /rails
 
+# 必要なディレクトリを作成
 RUN mkdir -p /rails/tmp/pids
 RUN mkdir -p /rails/tmp/sockets
 
