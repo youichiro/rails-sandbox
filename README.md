@@ -1,24 +1,27 @@
-# README
+# rails-sandbox
+Railsで色々試したいときに使うためのプロジェクト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 環境
+- ruby 2.7.2
+- rails 6.0.3.4
 
-Things you may want to cover:
+## 起動
 
-* Ruby version
+```sh
+$ make init    # 初回時のみ実行する
+$ make up-dev  # 開発環境を立ち上げる
+```
 
-* System dependencies
+## rails newまでにやったこと
 
-* Configuration
+```sh
+$ brew upgrade rbenv ruby-build
+$ rbenv install 2.7.2
+$ rbenv local 2.7.2
+$ gem install bundler
+$ gem install -v 6.0.3.4 —N rails  # -N: ドキュメントをインストールしない
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# -M: ActionMailerのセットアップをスキップ
+# -C: ActionCableのセットアップをスキップ
+$ rails new -d mysql --api -M -C rails-sandbox
+```
