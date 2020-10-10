@@ -49,10 +49,34 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] sidekiq
 
 
+## CORSの設定
+- Gemfileのコメントを外して`bundle install`
+
+```ruby:Gemfile
+gem 'rack-cors'
+```
+
+- `config/initializers/cors.rb`を編集
+
+```ruby:config/initializers/cors.rb
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins ENV.fetch('CORS_ALLOW_ORIGIN') { '' }
+
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end
+```
+
+- 許可したいオリジンがあれば環境変数`CORS_ALLOW_ORIGIN`に値をセットする
+
+
 ## rubocopの導入
 - Gemfileに以下を追加して`bundle install`
 
-```Gemfile
+```ruby:Gemfile
 group :development do
   # rubocop
   gem 'rubocop', require: false
