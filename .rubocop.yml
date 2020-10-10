@@ -1,0 +1,93 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  DisabledByDefault: true
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'tmp/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'config.ru'
+    - 'test/**/*'
+    - 'Rakefile'
+
+#---------------------------------------------------------------
+# Layout
+#---------------------------------------------------------------
+Layout:
+  Enabled: true
+
+Layout/LineLength:
+  Enabled: false
+
+#---------------------------------------------------------------
+# Lint
+#---------------------------------------------------------------
+Lint:
+  Enabled: true
+
+#---------------------------------------------------------------
+# Naming
+#---------------------------------------------------------------
+Naming:
+  Enabled: true
+
+# メソッド名の先頭にsetやgetを使用可
+Naming/AccessorMethodName:
+  Enabled: false
+
+# メソッド名の先頭にisやhasを使用可
+Naming/PredicateName:
+  Enabled: false
+
+#---------------------------------------------------------------
+# Security
+#---------------------------------------------------------------
+Security:
+  Enabled: true
+
+#---------------------------------------------------------------
+# Style
+#---------------------------------------------------------------
+# and, or でなく &&, || を使うように
+Style/AndOr:
+  Enabled: true
+
+# 文字列だけのリテラルを括るのにシングルクォートを使用する
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# Hashの最後の要素の末尾にコンマをつける
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# %記法の配列の括弧の種類を強制する
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%w': ()
+    '%W': ()
+
+#---------------------------------------------------------------
+# Rails
+#---------------------------------------------------------------
+Rails:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: false
+
+# renderで返すstatusを 404 と書くか :not_found と書くか
+Rails/HttpStatus:
+  EnforcedStyle: numeric
+
+# DateでなくTimeWithZoneの使用を強制
+# タイムゾーンは一律なはずなのでいったんチェックしない
+Rails/Date:
+  Enabled: false
