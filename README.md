@@ -47,6 +47,7 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] logger
 - [ ] replica DB
 - [ ] sidekiq
+- [ ] redis cache
 
 
 ## CORSの設定
