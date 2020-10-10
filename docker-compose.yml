@@ -26,8 +26,6 @@ services:
       - ./db:/rails/db
       - ./docker:/rails/docker
       - ./lib:/rails/lib
-      - ./log:/rails/log
-      - ./public:/rails/public
     env_file:
       - ./environments/db.env
       - ./environments/api.env

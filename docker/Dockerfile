@@ -37,10 +37,10 @@ RUN mkdir -p /rails/tmp/pids
 RUN mkdir -p /rails/tmp/sockets
 
 # bundle installしたファイルをbuilderからコピーする
-COPY --chown=app:app --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder /usr/local/bundle /usr/local/bundle
 
 # entrypoint.shをコピー
-COPY --chown=app:app ./docker/entrypoint.sh /rails/docker/entrypoint.sh
+COPY ./docker/entrypoint.sh /rails/docker/entrypoint.sh
 
 EXPOSE 3001
 ENTRYPOINT [ "docker/entrypoint.sh" ]
