@@ -14,16 +14,12 @@ $ make init    # 初回時のみ実行する
 $ make up-dev  # 開発環境を立ち上げる
 ```
 
-## gemを追加するとき
+## makeコマンド
 
 ```sh
-$ make bundle-install
-```
-
-## migrateするとき
-
-```sh
-$ make migrate
+$ make bundle-install  # gemを追加する
+$ make migrate         # migrateする
+$ make console         # rails consoleを起動する
 ```
 
 ## rails newまでにやったこと
@@ -48,3 +44,4 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] test
 - [ ] rubocop
 - [ ] swagger
+- [ ] logger
