@@ -39,17 +39,15 @@ RUN mkdir /rails && chown app:app /rails
 USER app
 WORKDIR /rails
 
-# 必要なディレクトリを作成
+# builderでbundle installしたファイルをコピーする
+COPY --chown=app:app --from=builder /usr/local/bundle /usr/local/bundle
+
+# プロジェクトをコピー
+COPY --chown=app:app . /rails
 RUN mkdir -p /rails/tmp/pids
 RUN mkdir -p /rails/tmp/sockets
 
-# builderでbundle installしたファイルをコピーする
-RUN gem install bundler
-COPY --chown=app:app --from=builder /usr/local/bundle /usr/local/bundle
-
-# entrypoint.shをコピー
-COPY ./docker/entrypoint.sh /rails/docker/entrypoint.sh
-
-EXPOSE 3001
+EXPOSE 3000
 ENTRYPOINT [ "docker/entrypoint.sh" ]
+# TODO: pumaの起動コマンドにする
 CMD ["bin/rails", "s", "-p", "3001", "-b", "0.0.0.0"]

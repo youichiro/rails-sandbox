@@ -39,8 +39,10 @@ WORKDIR /rails
 RUN mkdir -p /rails/tmp/pids
 RUN mkdir -p /rails/tmp/sockets
 
-# builderでbundle installしたファイルをコピーする
+# コンテナ起動後もbundle installしたいのでbundlerをインストール
 RUN gem install bundler
+
+# builderでbundle installしたファイルをコピーする
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 
 # entrypoint.shをコピー
