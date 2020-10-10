@@ -29,6 +29,8 @@ RUN apt update && apt install -y \
   default-mysql-client \
   libmariadb-dev \
   --no-install-recommends \
+  make \
+  gcc \
   vim && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
