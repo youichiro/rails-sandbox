@@ -13,3 +13,6 @@ bundle-install:
 
 migrate:
 	docker-compose run --rm api bin/rails db:migrate
+
+console:
+	docker-compose run --rm api bin/rails c
