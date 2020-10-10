@@ -25,3 +25,11 @@ $ gem install -v 6.0.3.4 —N rails  # -N: ドキュメントをインストー�
 # -C: ActionCableのセットアップをスキップ
 $ rails new -d mysql --api -M -C rails-sandbox
 ```
+
+## やりたいこと
+- [x] docker-composeで開発環境構築
+- [ ] cors
+- [ ] ユーザ承認API
+- [ ] puma
+- [ ] test
+- [ ] rubocop
