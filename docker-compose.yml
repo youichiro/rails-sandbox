@@ -16,7 +16,18 @@ services:
     container_name: rails_sandbox_api
     volumes:
       - bundle-install:/usr/local/bundle
-      - .:/rails
+      - ./Gemfile:/rails/Gemfile
+      - ./Gemfile.lock:/rails/Gemfile.lock
+      - ./Rakefile:/rails/Rakefile
+      - ./app:/rails/app
+      - ./bin:/rails/bin
+      - ./config:/rails/config
+      - ./config.ru:/rails/config.ru
+      - ./db:/rails/db
+      - ./docker:/rails/docker
+      - ./lib:/rails/lib
+      - ./log:/rails/log
+      - ./public:/rails/public
     env_file:
       - ./environments/db.env
       - ./environments/api.env
