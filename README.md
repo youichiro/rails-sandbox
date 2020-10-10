@@ -20,6 +20,12 @@ $ make up-dev  # 開発環境を立ち上げる
 $ make bundle-install
 ```
 
+## migrateするとき
+
+```sh
+$ make migrate
+```
+
 ## rails newまでにやったこと
 
 ```sh
