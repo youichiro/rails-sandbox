@@ -30,7 +30,7 @@ $ rails new -d mysql --api -M -C rails-sandbox
 
 ## やりたいこと
 - [x] docker-composeで開発環境構築
-- [ ] cors
+- [x] cors
 - [ ] ユーザ承認API
 - [ ] puma
 - [ ] test
