@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:5.7
+    container_name: rails_sandbox_db
+    ports:
+      - "3307:3306"
+    env_file:
+      - ./environments/db.env
+    volumes:
+      - mysql-db-data:/var/lib/mysql
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: rails_sandbox_api
+    volumes:
+      - bundle-install:/rails/vendor/bundle
+      - ./Gemfile:/rails/Gemfile
+      - ./Gemfile.lock:/rails/Gemfile.lock
+      - ./Rakefile:/rails/Rakefile
+      - ./app:/rails/app
+      - ./bin:/rails/bin
+      - ./config:/rails/config
+      - ./config.ru:/rails/config.ru
+      - ./db:/rails/db
+      - ./docker:/rails/docker
+      - ./lib:/rails/lib
+      - ./log:/rails/log
+      - ./public:/rails/public
+    env_file:
+      - ./environments/db.env
+      - ./environments/api.env
+    ports:
+      - "3001:3001"
+    links:
+      - db
+    tty: true
+    stdin_open: true
+volumes:
+  mysql-db-data:
+  bundle-install:
