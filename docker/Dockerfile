@@ -11,10 +11,16 @@ RUN apt update && apt install -y \
   openssh-client \
   --no-install-recommends
 
-# bundle install
+WORKDIR /rails
+
+# mount cacheを使ったbundle install
 RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
-RUN bundle install -j $(getconf _NPROCESSORS_ONLN)
+RUN bundle config set app_config .bundle
+RUN bundle config set path .cache/bundle
+RUN --mount=type=cache,target=/rails/.cache/bundle bundle install && \
+  cp -ar .cache/bundle /usr/local/bundle
+RUN bundle config set path /usr/local/bundle
 
 # multi-stage build
 FROM ruby:2.7.2-slim-buster as container
