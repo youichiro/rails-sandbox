@@ -3,7 +3,7 @@ class Api::SessionsController < Api::BaseController
 
   def create
     user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password]
+    if user&.authenticate(params[:password])
       session[:user_id] = user.id
       render json: { message: 'ok' }, status: 200
     else
