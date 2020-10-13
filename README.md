@@ -94,7 +94,7 @@ end
 - [公式ドキュメント](https://docs.rubocop.org/rubocop/0.93/index.html)で設定について確認できる
 
 ## ユーザのセッション認証
-PR: https://github.com/youichiro/rails-sandbox/pull/1
+PR: https://github.com/youichiro/rails-sandbox/pull/1<br>
 リクエストを送信したユーザがログイン済みかどうかを判定するためのセッション認証機能を実装した
 
 ```ruby:app/controllers/api/base_controller.rb
@@ -164,7 +164,7 @@ end
 
 
 ## Active Model Serializerの導入
-PR: https://github.com/youichiro/rails-sandbox/pull/2
-各モデルのSerializersを作成し、レスポンスとして返す属性を制御する
-意図しない値を返してしまうと情報漏洩に繋がるため、クライアント側に渡す属性を明示する
+PR: https://github.com/youichiro/rails-sandbox/pull/2<br>
+各モデルのSerializersを作成し、レスポンスとして返す属性を制御する<br>
+意図しない値を返してしまうと情報漏洩に繋がるため、クライアント側に渡す属性を明示する<br>
 参考：[パーフェクトRails著者が解説するdeviseの現代的なユーザー認証のモデル構成について](https://joker1007.hatenablog.com/entry/2020/08/17/141621)
