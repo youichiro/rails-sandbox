@@ -41,8 +41,8 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [x] docker-composeで開発環境構築
 - [x] cors
 - [x] rubocop
-- [x] serializer
 - [x] ユーザのセッション認証
+- [x] serializer
 - [ ] puma
 - [ ] test
 - [ ] swagger
