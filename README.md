@@ -41,7 +41,8 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [x] docker-composeで開発環境構築
 - [x] cors
 - [x] rubocop
-- [ ] ユーザ承認API
+- [x] serializer
+- [x] ユーザのセッション認証
 - [ ] puma
 - [ ] test
 - [ ] swagger
@@ -91,3 +92,79 @@ end
 - `.rubocop.yml`を作成してルールを記述
 - `bundle exec rubocop`を実行してチェック
 - [公式ドキュメント](https://docs.rubocop.org/rubocop/0.93/index.html)で設定について確認できる
+
+## ユーザのセッション認証
+PR: https://github.com/youichiro/rails-sandbox/pull/1
+リクエストを送信したユーザがログイン済みかどうかを判定するためのセッション認証機能を実装した
+
+```ruby:app/controllers/api/base_controller.rb
+# app/controllers/api/base_controller.rb
+
+class Api::BaseController < ApplicationController
+  before_action :login_required
+
+  def login_required
+    if !current_user
+      render json: { message: 'unauthorized' }, status: 401
+    end
+  end
+
+  private
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  end
+end
+```
+
+- `current_user`メソッド
+  - セッションに保存されている`user_id`を取得してユーザインスタンスを`@current_user`に代入する
+  - もしセッションに`user_id`が無ければnilを返す
+  - `||=`はもし左辺が偽か未定義ならば右辺を代入する演算子
+- `login_required`メソッド
+  - もしセッション認証されていなければ401を返す
+- `before_action :login_required`
+  - `Api::BaseController`を継承したコントローラのアクション実行前に認証チェックを行う
+
+
+```ruby:app/controllers/api/sessions_controller.rb
+# app/controllers/api/sessions_controller.rb
+
+class Api::SessionsController < Api::BaseController
+  skip_before_action :login_required, only: [ :create ]
+
+  def create
+    user = User.find_by(email: params[:email])
+    if user&.authenticate(params[:password])
+      session[:user_id] = user.id
+      render json: { message: 'ok' }, status: 200
+    else
+      render json: { message: 'unauthorized' }, status: 401
+    end
+  end
+
+  def destroy
+    reset_session
+    @current_user = nil
+  end
+
+  private
+
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
+end
+```
+
+- `sessions#create`アクション
+  - パラメータから`email`と`password`の値を受け取り、ユーザが存在する&パスワード認証できたら、セッションを作成し200を返す
+  - `skip_before_action`でセッション認証をスキップしている
+- `sessions#destroy`アクション
+  - セッションを削除する
+
+
+## Active Model Serializerの導入
+PR: https://github.com/youichiro/rails-sandbox/pull/2
+各モデルのSerializersを作成し、レスポンスとして返す属性を制御する
+意図しない値を返してしまうと情報漏洩に繋がるため、クライアント側に渡す属性を明示する
+参考：[パーフェクトRails著者が解説するdeviseの現代的なユーザー認証のモデル構成について](https://joker1007.hatenablog.com/entry/2020/08/17/141621)
