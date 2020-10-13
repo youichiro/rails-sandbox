@@ -1,16 +1,16 @@
 class Api::TasksController < ApplicationController
   def index
-    render json: Task.all
+    render json: Task.all, each_serializer: TaskSerializer
   end
 
   def show
-    render json: Task.find(params[:id])
+    render json: Task.find(params[:id]), serializer: TaskSerializer
   end
 
   def create
     task = Task.new(task_params)
     if task.save
-      render json: task
+      render json: task, serializer: TaskSerializer
     else
       render json: task.errors, status: 422
     end
@@ -19,7 +19,7 @@ class Api::TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     if task.update(task_params)
-      render json: task
+      render json: task, serializer: TaskSerializer
     else
       render json: task.errors, status: 422
     end
@@ -28,7 +28,7 @@ class Api::TasksController < ApplicationController
   def destroy
     task = Task.find(params[:id])
     task.destroy!
-    render json: task
+    render json: task, serializer: TaskSerializer
   end
 
   private
