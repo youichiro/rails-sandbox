@@ -2,14 +2,14 @@ class Api::UsersController < Api::BaseController
   skip_before_action :login_required, only: [ :create ]
 
   def show
-    render json: @current_user
+    render json: @current_user, serializer: UserSerializer
   end
 
   def create
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      render json: user
+      render json: user, serializer: UserSerializer
     else
       render json: user.errors, status: 422
     end
