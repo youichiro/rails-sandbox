@@ -7,6 +7,7 @@ init:
 
 bundle-install:
 	docker-compose run --rm api bundle install
+	bundle install
 
 migrate:
 	docker-compose run --rm api bin/rails db:migrate
