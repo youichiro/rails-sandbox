@@ -10,8 +10,9 @@ Railsで色々試したいときに使うためのプロジェクト
 ```sh
 $ git clone https://github.com/youichiro/rails-sandbox.git
 $ cd rails-sandbox
-$ make init    # 初回時のみ実行する
-$ make up-dev  # 開発環境を立ち上げる
+$ make init                   # 初回時のみ実行する
+$ docker-compose up           # railsサーバを起動
+$ open http://localhost:3001  # welcomeページを表示
 ```
 
 ## makeコマンド
