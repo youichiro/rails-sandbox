@@ -26,6 +26,9 @@ services:
       - ./db:/rails/db
       - ./docker:/rails/docker
       - ./lib:/rails/lib
+    environment:
+      - ADMIN_USER_EMAIL=$ADMIN_USER_EMAIL
+      - ADMIN_USER_PASSWORD=$ADMIN_USER_PASSWORD
     env_file:
       - ./environments/db.env
       - ./environments/api.env
