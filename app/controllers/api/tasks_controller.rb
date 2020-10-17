@@ -1,14 +1,14 @@
-class Api::TasksController < ApplicationController
+class Api::TasksController < Api::UsersController
   def index
-    render json: Task.all, each_serializer: TaskSerializer
+    render json: @current_user.tasks, each_serializer: TaskSerializer
   end
 
   def show
-    render json: Task.find(params[:id]), serializer: TaskSerializer
+    render json: @current_user.tasks.find(params[:id]), serializer: TaskSerializer
   end
 
   def create
-    task = Task.new(task_params)
+    task = @current_user.tasks.new(task_params)
     if task.save
       render json: task, serializer: TaskSerializer
     else
@@ -17,7 +17,7 @@ class Api::TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
+    task = @current_user.tasks.find(params[:id])
     if task.update(task_params)
       render json: task, serializer: TaskSerializer
     else
@@ -26,7 +26,7 @@ class Api::TasksController < ApplicationController
   end
 
   def destroy
-    task = Task.find(params[:id])
+    task = @current_user.tasks.find(params[:id])
     task.destroy!
     render json: task, serializer: TaskSerializer
   end
