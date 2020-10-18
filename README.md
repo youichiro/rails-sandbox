@@ -10,6 +10,8 @@ Railsで色々試したいときに使うためのプロジェクト
 ```sh
 $ git clone https://github.com/youichiro/rails-sandbox.git
 $ cd rails-sandbox
+$ cp .env.sample .env
+# .envにadminユーザの情報を記入する
 $ make init                   # 初回時のみ実行する
 $ docker-compose up           # railsサーバを起動
 $ open http://localhost:3001  # welcomeページを表示
