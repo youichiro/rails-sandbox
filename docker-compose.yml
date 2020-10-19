@@ -26,6 +26,7 @@ services:
       - ./db:/rails/db
       - ./docker:/rails/docker
       - ./lib:/rails/lib
+      - ./spec:/rails/spec
     environment:
       - ADMIN_USER_EMAIL=$ADMIN_USER_EMAIL
       - ADMIN_USER_PASSWORD=$ADMIN_USER_PASSWORD
