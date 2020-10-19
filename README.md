@@ -53,6 +53,7 @@ $ rails new -d mysql --api -M -C rails-sandbox
 - [ ] sidekiq
 - [ ] redis cache
 - [ ] OAuth
+- [ ] active_admin
 
 
 ## CORSの設定
