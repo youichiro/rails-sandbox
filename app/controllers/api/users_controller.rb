@@ -2,7 +2,7 @@ class Api::UsersController < Api::BaseController
   skip_before_action :login_required, only: [ :create ]
 
   def show
-    render json: @current_user, serializer: UserSerializer
+    render json: current_user, serializer: UserSerializer
   end
 
   def create
