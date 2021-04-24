@@ -14,3 +14,6 @@ migrate:
 
 console:
 	docker-compose run --rm api bin/rails c
+
+rspec:
+	docker-compose run --rm api bundle exec rspec
